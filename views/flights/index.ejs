@@ -1,0 +1,27 @@
+
+<%- include('../partials/header') %>
+
+  <table id="list-all">
+    <thead>
+      <tr>
+        <th>Airline</th>
+        <th>Airport</th>
+        <th>Departs</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% flights.forEach(f => { %>
+        <tr <%- new Date(f.departs) < new Date() ? 'class="date-passed"' : '' %>>
+          <td><%= f.airline %></td>
+          <td><%= f.airport %></td>
+          <td>
+            <%= new Date(f.departs).toLocaleString() %>
+          </td>
+          <td><a href="/flights/<%= f._id %>">DETAILS</a></td>
+        </tr>
+    <% }); %>
+    </tbody>
+  </table>
+
+<%- include('../partials/footer') %>
